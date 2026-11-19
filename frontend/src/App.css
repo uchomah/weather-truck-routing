@@ -1,0 +1,154 @@
+/* App.css - all our styles. plain css, no framework. */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #222;
+  background: #f5f6f8;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-header {
+  padding: 12px 20px;
+  background: #1f2937;
+  color: white;
+}
+.app-header h1 { margin: 0; font-size: 20px; }
+.subtitle { margin: 4px 0 0; font-size: 13px; opacity: 0.8; }
+
+.app-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;  /* important so children can scroll */
+}
+
+.sidebar {
+  width: 340px;
+  padding: 16px;
+  overflow-y: auto;
+  background: white;
+  border-right: 1px solid #e0e0e0;
+}
+
+.main-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ---- form ---- */
+.trip-form { display: flex; flex-direction: column; gap: 10px; }
+.trip-form h2 { margin: 0 0 6px; font-size: 16px; }
+.trip-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  gap: 4px;
+}
+.trip-form input,
+.trip-form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.trip-form button {
+  margin-top: 6px;
+  padding: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.trip-form button:disabled { background: #94a3b8; cursor: not-allowed; }
+
+.error-box {
+  margin-top: 12px;
+  padding: 10px;
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-radius: 4px;
+  color: #991b1b;
+  font-size: 13px;
+}
+
+/* ---- route list ---- */
+.route-list { margin-top: 16px; }
+.route-list h3 { font-size: 14px; margin: 0 0 8px; }
+
+.route-card {
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  background: #fafafa;
+}
+.route-card.recommended {
+  border-color: #2563eb;
+  background: #eff6ff;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+.route-card.no-travel { border-color: #dc2626; background: #fef2f2; }
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.route-name { font-weight: 600; font-size: 13px; }
+.status-badge {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: #e5e7eb;
+  text-transform: uppercase;
+}
+.recommended .status-badge { background: #2563eb; color: white; }
+.no-travel .status-badge { background: #dc2626; color: white; }
+
+.card-stats { display: flex; flex-direction: column; gap: 3px; font-size: 12px; }
+.card-stats > div { display: flex; justify-content: space-between; }
+.card-stats .label { color: #666; }
+
+/* ---- map ---- */
+.route-map {
+  flex: 1;
+  min-height: 300px;
+}
+.map-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 14px;
+}
+
+/* ---- heatmap slider ---- */
+.heatmap-slider {
+  padding: 12px 20px;
+  background: white;
+  border-top: 1px solid #e0e0e0;
+}
+.heatmap-slider label {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  gap: 6px;
+}
+.heatmap-slider input[type="range"] { width: 100%; }
+.slider-hint { font-size: 11px; color: #888; margin-top: 4px; }
