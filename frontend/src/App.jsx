@@ -8,7 +8,7 @@ import RouteMap from "./RouteMap";
 import HeatmapSlider from "./HeatmapSlider";
 import "./App.css";
 
-const API_BASE = "http://127.0.0.1:8000/api";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000/api";
 
 // initial form values. departure defaults to now-ish, rounded to the hour,
 // formatted for datetime-local (no Z, no timezone).
