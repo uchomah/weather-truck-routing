@@ -59,8 +59,6 @@ def classify_risk(wind_mph, rain_in_hr, snow_in_hr, load_lb):
 
     final_i = max(base, load_i)
 
-    # debug - remove before prod but useful while wiring up
-    print(f"[risk] wind={wind_mph} rain={rain_in_hr} snow={snow_in_hr} "
-          f"load={load_lb} -> {RISK_LEVELS[final_i]}")
+
 
     return RISK_LEVELS[final_i]

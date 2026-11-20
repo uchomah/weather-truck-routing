@@ -37,7 +37,7 @@ def geocode(place):
         "size": 1,  # just want the top hit
     }
 
-    print(f"[ors] geocoding: {place}")
+    
 
     resp = requests.get(url, params=params, timeout=15)
     if resp.status_code != 200:
@@ -82,7 +82,7 @@ def get_routes(origin_coords, dest_coords, target_count=3):
         "Content-Type": "application/json",
     }
 
-    print(f"[ors] routing {origin_coords} -> {dest_coords}, want {target_count} routes")
+    
 
     resp = requests.post(url, json=body, headers=headers, timeout=30)
     if resp.status_code != 200:
@@ -181,26 +181,18 @@ def get_three_routes(origin_coords, dest_coords):
                 detour_pt = _offset_point(mid[0], mid[1], bearing, offset_km, side, angle_rad)
                 try:
                     leg = _post_route([origin_coords, detour_pt, dest_coords])
-                    print(f"[ors] detour side={side} angle={angle_deg} offset={offset_km}km ok")
                     break  # got one, stop trying smaller offsets
                 except RuntimeError as e:
-                    print(f"[ors] detour side={side} angle={angle_deg} offset={offset_km}km failed: {str(e)[:80]}")
                     leg = None
                     continue
             if leg:
                 break  # got one at this angle, no need to try diagonal
 
         if not leg:
-            print(f"[ors] detour side={side} gave up after all offsets/angles")
             continue
 
         detour_dist = leg["properties"]["summary"]["distance"]
         if abs(detour_dist - direct_dist) / direct_dist < 0.02:
-            print(f"[ors] detour side={side} too similar ({detour_dist:.0f}m vs {direct_dist:.0f}m), dropping")
             continue
-
-        print(f"[ors] detour side={side} kept: {detour_dist/1000:.0f} km vs direct {direct_dist/1000:.0f} km")
         routes.append(leg)
-
-    print(f"[ors] returning {len(routes)} route(s)")
     return routes

@@ -29,8 +29,6 @@ def _fetch_batch(lats, lons):
         "timezone": "UTC",
     }
 
-    print(f"[weather] fetching batch of {len(lats)} coords")
-
     resp = requests.get(OPEN_METEO_BASE, params=params, timeout=30)
     if resp.status_code != 200:
         raise RuntimeError(f"open-meteo failed: {resp.status_code} {resp.text[:200]}")
